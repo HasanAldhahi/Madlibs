@@ -1,3 +1,43 @@
 /**
  * Your CSS goes here.
  */
+
+
+ *{
+     margin: 0;
+ }
+
+ body{
+     width: 100%;
+     height: 100%;
+ }
+
+
+ .container{
+     display: flex;
+     /* border: 1px solid black; */
+     width: 80%;
+     margin: 0 auto;
+     justify-content: space-between;
+ }
+
+ p{
+     text-align: center;
+ }
+
+ .madLibsEdit{
+     width: 35%;
+     height: 300px;
+     border: 1px solid black;
+
+
+ }
+
+ .madLibsPreview{
+     width: 35%;
+     height: 300px;
+     border: 1px solid black;
+    
+    
+
+ }
