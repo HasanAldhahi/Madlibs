@@ -29,12 +29,12 @@
  */
 
 
+
+
 const preview = document.getElementsByClassName("madLibsPreview");
 const edit = document.getElementsByClassName("madLibsEdit");
-
-
-
-
+const previewP = document.getElementById("previewP");
+const editP = document.getElementById("editP")
 
 
 
@@ -60,7 +60,7 @@ function parseStory(rawStory) {
   })
 
 
-  // console.log(mapped_arr);
+
   return mapped_arr;
 
 }
@@ -77,11 +77,76 @@ function parseStory(rawStory) {
  */
 getRawStory().then(parseStory).then((processedStory) => {
 
-  console.log(processedStory)
+
+
+
+
+  input_place_id = [];
+  for (let [index, obj] of Object.entries(processedStory)) {
+
+    if (obj.pos === "n" || obj.pos === "v" || obj.pos === "a") {
+
+      input_place_id.push(index);
+
+      editP.innerHTML += `<input id = "in${index}" type= "text" value = ${obj.word}[${obj.pos}] > `
+      previewP.innerHTML += `<span id = span${index}>${obj.word}</span>` + " ";
+    }
+    else {
+      editP.innerHTML += `${obj.word} ` + " ";
+      previewP.innerHTML += `${obj.word}` + " ";
+    }
+  }
+
+  const inputsEl = document.querySelectorAll("input")
+  const spansEl = document.querySelectorAll("span")
+
+
+
+  console.log(inputsEl);
+  console.log(spansEl);
+
+  function enterKeyPressed(event, I) {
+    if (event.keyCode == 13) {
+      console.log("Enter key is pressed");
+      event.preventDefault();
+
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  // j is 0,1,2,3,4,5     
+  //index is the id of input and span which is 0,2,4,9,12,14 positions
+  // input_place_id is [0,2,4,9,12,14]
+
+  for (let j in Object.entries(input_place_id)) {
+    console.log(j)
+    inputsEl[j]
+      .addEventListener('input', () => {
+        spansEl[j].innerText = inputsEl[j].value;
+      })
+    inputsEl[j].addEventListener('keydown', (event) => {
+      if (event.keyCode == 13) {
+        console.log("Enter key is pressed");
+        event.preventDefault();
+
+      } else {
+        return false;
+      }
+    })
+  }
+
 
 
 
 
 });
+
+
+
+
+
 
 

@@ -29,6 +29,7 @@
      width: 35%;
      height: 300px;
      border: 1px solid black;
+     text-align: center;
 
 
  }
@@ -37,7 +38,17 @@
      width: 35%;
      height: 300px;
      border: 1px solid black;
+     text-align: center;
     
     
 
+ }
+ #previewP {
+     padding: 5px;
+     
+
+ }
+
+ #in {
+     border: black solid 1px 
  }
