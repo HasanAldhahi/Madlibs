@@ -6,17 +6,32 @@
   <meta name="viewport" content="width=device-width">
   <title>repl.it</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 <body>
-
-  <div class="container">
-    <div class='madLibsEdit'>
-      <p id="editP"></p>
-
-    </div>
-    <div class='madLibsPreview'>
-      <p id="previewP"></p>
+  <div class="bg-image" style="background-image: url('https://img.freepik.com/free-vector/flat-design-abstract-background_23-2149116123.jpg?w=2000');
+              height: 100vh; background-repeat: no-repeat; background-size: cover">
+    <div class="container border border-success h-100">
+      <div class="row">
+        <div class="fs-1 fw-bold text-center my-5">
+          Hello to MadLibs
+        </div>
+      </div>
+      <div class="row  d-flex  flex-row mt-3 justify-content-around h-50">
+        <div class="col-xl-4  col-lg-4  col-md-5 col-sm-11  border border-dark text-center  mb-3 ">
+          <div class="edit text-start">
+            <p id="editP" class="p-4"></p>
+          </div>
+        </div>
+        <div class="col-xl-4  col-lg-4  col-md-5 col-sm-11 border border-success text-center mb-3">
+          <div class='madLibsPreview text-start '>
+            <p id="previewP" class="p-4"></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -25,6 +40,11 @@
   </script>
   <script src="madlibs.js">
   </script>
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

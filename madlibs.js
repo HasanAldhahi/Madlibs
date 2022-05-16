@@ -76,11 +76,6 @@ function parseStory(rawStory) {
  * You'll want to use the results of parseStory() to display the story on the page.
  */
 getRawStory().then(parseStory).then((processedStory) => {
-
-
-
-
-
   input_place_id = [];
   for (let [index, obj] of Object.entries(processedStory)) {
 
@@ -88,23 +83,16 @@ getRawStory().then(parseStory).then((processedStory) => {
 
       input_place_id.push(index);
 
-      editP.innerHTML += `<input id = "in${index}" type= "text" value = ${obj.word}[${obj.pos}] > `
-      previewP.innerHTML += `<span id = span${index}>${obj.word}</span>` + " ";
+      editP.innerHTML += `<input id = "in${index}" class="shadow p-1 mb-2 lg-white rounded w-25 border border-grey" type= "text" value = ${obj.word}[${obj.pos}] maxlength = "20"  > `
+      previewP.innerHTML += `<span id = span${index} class ="mb-2">${obj.word}</span>` + " ";
     }
     else {
       editP.innerHTML += `${obj.word} ` + " ";
       previewP.innerHTML += `${obj.word}` + " ";
     }
   }
-
   const inputsEl = document.querySelectorAll("input")
   const spansEl = document.querySelectorAll("span")
-
-
-
-  console.log(inputsEl);
-  console.log(spansEl);
-
   function enterKeyPressed(event, I) {
     if (event.keyCode == 13) {
       console.log("Enter key is pressed");
@@ -122,25 +110,28 @@ getRawStory().then(parseStory).then((processedStory) => {
   // input_place_id is [0,2,4,9,12,14]
 
   for (let j in Object.entries(input_place_id)) {
-    console.log(j)
-    inputsEl[j]
-      .addEventListener('input', () => {
-        spansEl[j].innerText = inputsEl[j].value;
-      })
+    inputsEl[j].addEventListener('input', () => {
+      spansEl[j].innerText = inputsEl[j].value;
+    })
     inputsEl[j].addEventListener('keydown', (event) => {
       if (event.keyCode == 13) {
-        console.log("Enter key is pressed");
-        event.preventDefault();
-
-      } else {
-        return false;
+        if (parseInt(j) === input_place_id.length - 1) {
+          const nextinput = inputsEl[0].focus()
+        }
+        else {
+          event.preventDefault();
+          console.log(j)
+          const nextinput = inputsEl[parseInt(j) + 1].focus();
+        }
       }
     })
+
+    inputsEl[j].addEventListener('click', () => {
+
+      inputsEl[j].value = '';
+
+    })
   }
-
-
-
-
 
 });
 
