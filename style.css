@@ -58,7 +58,35 @@
      /* border-radius: 5%; */
 
 span {
-  color : rgb(233, 56, 233);
+  color :  rgb(214, 62, 151);
 
 }
 
+input:focus {
+    outline:none;
+    background-color: rgb(220, 198, 240);
+    box-shadow: 0 0 10px #719ECE;
+}
+
+h1{
+   
+    font-family: 'Macondo', cursive;
+   text-decoration: 3px solid;
+    color: rgb(206, 94, 159) !important;
+    text-shadow: 0 0 3px #e7d8d8, 0 0 3px #34348f;
+}
+p{
+    font-family: 'Inconsolata', monospace;
+    font-weight: bold;
+    color: rgb(75, 70, 70);
+    line-height: 40px;
+}
+.contener{
+    background-color: rgba(194, 204, 231, 0.5);
+   border:1px #e7d8d8 solid ;
+    border-radius: 1%;
+    overflow:  none;
+}
+input{
+    line-height:2px !important;
+}
