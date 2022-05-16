@@ -78,27 +78,33 @@ function parseStory(rawStory) {
 getRawStory().then(parseStory).then((processedStory) => {
   input_place_id = [];
   for (let [index, obj] of Object.entries(processedStory)) {
-    
+    console.log(processedStory[parseInt(index) + 1]);
     if (obj.pos === "n" || obj.pos === "v" || obj.pos === "a") {
 
       input_place_id.push(index);
-      console.log (processedStory.length)
-      console.log (Object.entries(processedStory))
-      editP.innerHTML += `<input id = "in${index}" class=" lg-white rounded  border border-grey" type= "text" placeholder = ${obj.word}[${obj.pos}] maxlength = "20"  style="width:35% "> `
-      previewP.innerHTML += `<span id = span${index} class ="mb-2">${obj.word}</span>` + " ";
-    }
-    // else if(processedStory[parseInt(index)+1].word=== "," || "."){
+      editP.innerHTML += `<input id = "in${index}" class=" lg-white rounded  border border-grey" type= "text" placeholder = ${obj.word}[${obj.pos}] maxlength = "20"  style="width:25% "> `
 
-    //     editP.innerHTML += `${obj.word} ` + " ";
-    //     previewP.innerHTML += `${obj.word}` + " ";
-        
-    //   }
-      else{
-      editP.innerHTML += `${obj.word} ` + " ";
+      if (processedStory[parseInt(index) + 1].word === "," || processedStory[parseInt(index) + 1].word === ".") {
+        previewP.innerHTML += `<span id = span${index} class ="mb-2">${obj.word}</span>`;
+      }
+      else {
+        previewP.innerHTML += `<span id = span${index} class ="mb-2">${obj.word}</span>` + " ";
+      }
+
+    }
+    else if (processedStory[parseInt(index) + 1]?.word === "," || processedStory[parseInt(index) + 1]?.word === ".") {
+
+      console.log(processedStory[parseInt(index) + 1].word)
+      editP.innerHTML += `${obj.word}`;
+      previewP.innerHTML += `${obj.word}`;
+
+    }
+    else {
+      editP.innerHTML += `${obj.word}` + " ";
       previewP.innerHTML += `${obj.word}` + " ";
-    
+
+    }
   }
-}
   const inputsEl = document.querySelectorAll("input")
   const spansEl = document.querySelectorAll("span")
   function enterKeyPressed(event, I) {
@@ -138,23 +144,23 @@ getRawStory().then(parseStory).then((processedStory) => {
       inputsEl[j].value = '';
       //to reset the styile of the inputs and the value of the span
       inputsEl[j].style.backgroundColor = "";
-      spansEl[j].innerText= ""
-    
+      spansEl[j].innerText = ""
+
     })
-//to change style of input when it is empty or filled
-    inputsEl[j].addEventListener('change',()=> {
+    //to change style of input when it is empty or filled
+    inputsEl[j].addEventListener('change', () => {
 
       if (inputsEl[j].value == "") {
         inputsEl[j].style.backgroundColor = "";
       }
-      else{
+      else {
         inputsEl[j].style.backgroundColor = "  rgb(255, 133, 255)";
       }
-  }) 
-  
-  
+    })
+
+
   }
-  
+
 
 });
 
