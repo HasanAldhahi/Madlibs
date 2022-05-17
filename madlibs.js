@@ -85,14 +85,20 @@ getRawStory().then(parseStory).then((processedStory) => {
 
   for (let [index, obj] of Object.entries(processedStory)) {
 
-    //creating an array for the inputs
+    //creating an array to track the id of the  inputs relative to their position on the array of objects namely, processedStory.
     input_place_id = [];
+
+
     if (obj.pos === "n" || obj.pos === "v" || obj.pos === "a") {
 
       // input_place_id is [0,2,4,9,12,14] according to its positon
       input_place_id.push(index);
       //adding the inputs to the edting
       editP.innerHTML += `<input id = "in${index}" class=" lg-white rounded  border border-grey" type= "text" placeholder = ${obj.word}[${obj.pos}] maxlength = "20"  style="width:25% "> `
+
+      // checking if the word that iam currently on in this loop has after it a comma or dot 
+      // if it has comma no need to add spacing 
+      // if don't we need to add a space 
 
       if (processedStory[parseInt(index) + 1].word === "," || processedStory[parseInt(index) + 1].word === ".") {
         previewP.innerHTML += `<span id = span${index} class ="mb-2">${obj.word}</span>`;
@@ -102,9 +108,10 @@ getRawStory().then(parseStory).then((processedStory) => {
       }
 
     }
+    // if it is not a word that is adj, noun, verb 
+    //similarly to the previous logic implemented we do check commas and dots 
     else if (processedStory[parseInt(index) + 1]?.word === "," || processedStory[parseInt(index) + 1]?.word === ".") {
 
-      console.log(processedStory[parseInt(index) + 1].word)
       editP.innerHTML += `${obj.word}`;
       previewP.innerHTML += `${obj.word}`;
 
@@ -115,13 +122,12 @@ getRawStory().then(parseStory).then((processedStory) => {
 
     }
   }
+
   const inputsEl = document.querySelectorAll("input")
   const spansEl = document.querySelectorAll("span")
 
 
-      
-  
-
+  // putting eventlisenters to all the inputs field 
   for (let j in Object.entries(input_place_id)) {
     // j is 0,1,2,3,4,5 
     inputsEl[j].addEventListener('input', () => {
@@ -137,11 +143,11 @@ getRawStory().then(parseStory).then((processedStory) => {
         else {
           event.preventDefault();
           const nextinput = inputsEl[parseInt(j) + 1].focus();
-          
+
         }
       }
     })
-     //to reset the styile of the inputs and the value of the input or the span
+    //to reset the style of the inputs and the value of the input or the span
 
     inputsEl[j].addEventListener('click', () => {
       inputsEl[j].value = '';

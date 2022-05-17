@@ -26,6 +26,13 @@ h1{
     color: rgb(206, 94, 159) !important;
     text-shadow: 0 0 3px #e7d8d8, 0 0 3px #34348f;
 }
+
+h2{
+     font-family: 'Macondo','cursive';
+    font-size: 200% !important;
+    color: #738c92 !important;
+    text-shadow: 0 0 3px #797979, 0 0 3px #c03993;
+}
 .container{
     padding-top: auto;
     
