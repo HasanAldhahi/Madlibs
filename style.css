@@ -2,11 +2,55 @@
  * Your CSS goes here.
  */
 
+.bg-image{
+    background-image: url('https://img.freepik.com/free-vector/flat-design-abstract-background_23-2149116123.jpg?w=2000');
+    background-size:cover;
+}
 
 
-span {
-  color :  rgb(214, 62, 151);
+@media only screen and   (min-width: 1024px) {
+    .bg-image {
+    height: 100vh;
+    }
 
+} 
+@media only screen and  (max-width: 1024px) {
+    .bg-image {
+    height: auto;
+    }
+} 
+
+h1{
+    font-family: 'Macondo','cursive';
+    font-size: 350%  !important;
+    color: rgb(206, 94, 159) !important;
+    text-shadow: 0 0 3px #e7d8d8, 0 0 3px #34348f;
+}
+.container{
+    padding-top: auto;
+    
+
+}
+.box{
+    background-color: rgba(218, 196, 196, 0.5);
+    border:1px #e7d8d8 solid ;
+    border-radius: 1%;
+    align-content: center;
+    background-size: contain;
+    
+} 
+p{
+    font-family: 'Inconsolata', monospace;
+    font-weight: bold; 
+    font-size: x-large;
+    color: rgb(95, 92, 92);
+    line-height: 40px;
+    
+}
+
+input{
+    line-height:2px !important;
+    text-align: center ;
 }
 
 input:focus {
@@ -15,26 +59,12 @@ input:focus {
     box-shadow: 0 0 10px #719ECE;
 }
 
-h1{
-   
-    font-family: 'Macondo', cursive;
-   text-decoration: 3px solid;
-    color: rgb(206, 94, 159) !important;
-    text-shadow: 0 0 3px #e7d8d8, 0 0 3px #34348f;
+span {
+    color :  rgb(214, 62, 151);
+
 }
-p{
-    font-family: 'Inconsolata', monospace;
-    font-weight: bold;
-    color: rgb(75, 70, 70);
-    line-height: 40px;
-}
-.contener{
-    background-color: rgba(194, 204, 231, 0.5);
-   border:1px #e7d8d8 solid ;
-    border-radius: 1%;
-    overflow:  none;
-}
-input{
-    line-height:2px !important;
-    text-align: center ;
-}
+
+
+
+
+

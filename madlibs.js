@@ -27,10 +27,16 @@
  * There are multiple ways to do this, but you may want to use regular expressions.
  * Please go through this lesson: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/
  */
+/**
+ * All your other JavaScript code goes here, inside the function. Don't worry about
+ * the `then` and `async` syntax for now.
+ *
+ * You'll want to use the results of parseStory() to display the story on the page.
+ */
 
 
 
-
+// getting Elements from html to use later
 const preview = document.getElementsByClassName("madLibsPreview");
 const edit = document.getElementsByClassName("madLibsEdit");
 const previewP = document.getElementById("previewP");
@@ -40,14 +46,17 @@ const editP = document.getElementById("editP")
 
 function parseStory(rawStory) {
 
-
+  //adding space to all . , while it is string(text)
   A = rawStory.replaceAll(".", " .");
   raw = A.replaceAll(",", " ,")
+
+  //converting the story to an array of strings 
   const arr = raw.split(" ");
 
-
-  const mapped_arr = arr.map((el, i) => {
+  //converting  the array of strings to an arry of object
+  const mapped_arr = arr.map((el) => {
     const obj = { word: '', pos: '' }
+
     const indx = el.indexOf("[")
     if (indx === -1) {
       return { word: el }
@@ -59,29 +68,30 @@ function parseStory(rawStory) {
     return obj;
   })
 
-
-
   return mapped_arr;
 
 }
 
+//we have already fetch the story in do not touch file.js
+//we have already connected the js files in html
+//we got the outputs required to start the process
 
 
-
-
-/**
- * All your other JavaScript code goes here, inside the function. Don't worry about
- * the `then` and `async` syntax for now.
- *
- * You'll want to use the results of parseStory() to display the story on the page.
- */
 getRawStory().then(parseStory).then((processedStory) => {
-  input_place_id = [];
+  console.log(processedStory)
+  //our outputs looks like [0:{obj}, 1:{obj}, 2:{obj},..]
+
+  //index is the id of input and span which is 0,2,4,9,12,14 positions
+
   for (let [index, obj] of Object.entries(processedStory)) {
-    console.log(processedStory[parseInt(index) + 1]);
+
+    //creating an array for the inputs
+    input_place_id = [];
     if (obj.pos === "n" || obj.pos === "v" || obj.pos === "a") {
 
+      // input_place_id is [0,2,4,9,12,14] according to its positon
       input_place_id.push(index);
+      //adding the inputs to the edting
       editP.innerHTML += `<input id = "in${index}" class=" lg-white rounded  border border-grey" type= "text" placeholder = ${obj.word}[${obj.pos}] maxlength = "20"  style="width:25% "> `
 
       if (processedStory[parseInt(index) + 1].word === "," || processedStory[parseInt(index) + 1].word === ".") {
@@ -107,26 +117,18 @@ getRawStory().then(parseStory).then((processedStory) => {
   }
   const inputsEl = document.querySelectorAll("input")
   const spansEl = document.querySelectorAll("span")
-  function enterKeyPressed(event, I) {
-    if (event.keyCode == 13) {
-      console.log("Enter key is pressed");
-      event.preventDefault();
-
-      return true;
-    } else {
-      return false;
-    }
-  }
 
 
-  // j is 0,1,2,3,4,5     
-  //index is the id of input and span which is 0,2,4,9,12,14 positions
-  // input_place_id is [0,2,4,9,12,14]
+      
+  
 
   for (let j in Object.entries(input_place_id)) {
+    // j is 0,1,2,3,4,5 
     inputsEl[j].addEventListener('input', () => {
       spansEl[j].innerText = inputsEl[j].value;
     })
+
+    //to change the curse from input to another by prseeing enter
     inputsEl[j].addEventListener('keydown', (event) => {
       if (event.keyCode == 13) {
         if (parseInt(j) === input_place_id.length - 1) {
@@ -134,16 +136,17 @@ getRawStory().then(parseStory).then((processedStory) => {
         }
         else {
           event.preventDefault();
-          console.log(j)
           const nextinput = inputsEl[parseInt(j) + 1].focus();
+          
         }
       }
     })
+     //to reset the styile of the inputs and the value of the input or the span
 
     inputsEl[j].addEventListener('click', () => {
       inputsEl[j].value = '';
-      //to reset the styile of the inputs and the value of the span
       inputsEl[j].style.backgroundColor = "";
+
       spansEl[j].innerText = ""
 
     })
